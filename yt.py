@@ -7,7 +7,7 @@ import google.generativeai as genai
 
 from youtube_transcript_api import YouTubeTranscriptApi
 
-from youtube_transcript_api._api import ProxyManager
+import requests
 
 genai.configure(api_key="AIzaSyCKMpA51iLjyHDST_d0IQfeolnvxcAHDJk")
 
@@ -17,8 +17,7 @@ PROXIES = {
     "https": "https://72.10.160.173:29439"  # HTTPS proxy
 }
 
-# Initialize ProxyManager with the proxy
-proxy_manager = ProxyManager(PROXIES)
+
 
 prompt="""You are Yotube video summarizer. You will be taking the transcript text
 and summarizing the entire video and providing the important summary in points
