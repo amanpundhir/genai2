@@ -28,6 +28,9 @@ within 250 words. Please provide the summary of the text given here:  """
 def extract_transcript_details(youtube_video_url):
     try:
         video_id=youtube_video_url.split("=")[1]
+        # Override the default request session with proxies
+        session = requests.Session()
+        session.proxies.update(PROXIES)
         
         transcript_text=YouTubeTranscriptApi.get_transcript(video_id, proxies=PROXIES)
 
