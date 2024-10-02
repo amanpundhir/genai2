@@ -32,7 +32,7 @@ def extract_transcript_details(youtube_video_url):
         session = requests.Session()
         session.proxies.update(PROXIES)
         
-        transcript_text=YouTubeTranscriptApi.get_transcript(video_id, proxies=PROXIES)
+        transcript_text=YouTubeTranscriptApi.get_transcript(video_id, proxies=PROXIES, timeout=10)
 
         transcript = ""
         for i in transcript_text:
