@@ -7,7 +7,18 @@ import google.generativeai as genai
 
 from youtube_transcript_api import YouTubeTranscriptApi
 
+from youtube_transcript_api._api import ProxyManager
+
 genai.configure(api_key="AIzaSyCKMpA51iLjyHDST_d0IQfeolnvxcAHDJk")
+
+# Proxy details from the website
+PROXIES = {
+    "http": "http://72.10.160.173:29439",   # HTTP proxy
+    "https": "https://72.10.160.173:29439"  # HTTPS proxy
+}
+
+# Initialize ProxyManager with the proxy
+proxy_manager = ProxyManager(PROXIES)
 
 prompt="""You are Yotube video summarizer. You will be taking the transcript text
 and summarizing the entire video and providing the important summary in points
@@ -19,7 +30,7 @@ def extract_transcript_details(youtube_video_url):
     try:
         video_id=youtube_video_url.split("=")[1]
         
-        transcript_text=YouTubeTranscriptApi.get_transcript(video_id, proxies={"https": "http://localhost:8080"})
+        transcript_text=YouTubeTranscriptApi.get_transcript(video_id, proxies=PROXIES)
 
         transcript = ""
         for i in transcript_text:
