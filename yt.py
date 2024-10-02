@@ -19,7 +19,7 @@ def extract_transcript_details(youtube_video_url):
     try:
         video_id=youtube_video_url.split("=")[1]
         
-        transcript_text=YouTubeTranscriptApi.get_transcript(video_id)
+        transcript_text=YouTubeTranscriptApi.get_transcript(video_id, proxies={"https": "http://localhost:8080"})
 
         transcript = ""
         for i in transcript_text:
